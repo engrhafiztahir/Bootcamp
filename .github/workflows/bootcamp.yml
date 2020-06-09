@@ -1,0 +1,24 @@
+name: Bootcamp 2020 Class1
+
+on:
+  push:
+    branches: [ master ]
+ 
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      #Run a single command 
+    - name: Installing node modules
+    uses: actions/setup-node@v2-beta
+    with :
+    version : 12 
+    
+   - name: Install Surge
+     
+     run: npm install --global surge
+     - name: Deploying using Surge
+        run: surge ./ http://firstboot_camp.surge.sh/ --token${{secrets.FIRST_TOKEN}}
